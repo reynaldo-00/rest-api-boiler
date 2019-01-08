@@ -1,11 +1,11 @@
-// const localPgConnection = {
-//   host: 'localhost',
-//   database: 'keep',
-//   user:     'username',
-//   password: 'password'
-// }
+const localPgConnection = { // can be object or string
+  host: 'localhost', // address to find the db server
+  database: 'keep',
+  user:     'username',
+  password: 'password'
+}
 
-// const dbConnection = process.env.DATABASE_URL || localPgConnection;
+const dbConnection = process.env.DATABASE_URL || localPgConnection;
 
 module.exports = {
 
@@ -14,22 +14,21 @@ module.exports = {
     connection: {
       filename: './database/dev.sqlite3'
     },
-    defaultToNull : true,
+    useNullAsDefault: true,
     migrations: { directory: './database/migrations'},
     seeds: { directory: './database/seeds'},
   },
 
-
-  // production: {
-  //   client: 'pg',
-  //   connection: dbConnection,
-  //   pool: {
-  //     min: 2,
-  //     max: 10
-  //   },
-  //   migrations: { directory: './database/migrations'},
-  //   seeds: { directory: './database/seeds'},
-  // }
+  production: {
+    client: 'pg',
+    connection: dbConnection,
+    pool: {
+      min: 2,
+      max: 10
+    },
+    migrations: { directory: './database/migrations'},
+    seeds: { directory: './database/seeds'},
+  }
 
   // staging: {
   //   client: 'postgresql',
@@ -46,5 +45,4 @@ module.exports = {
   //     tableName: 'knex_migrations'
   //   }
   // },
-
 };

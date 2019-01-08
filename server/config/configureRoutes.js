@@ -1,5 +1,6 @@
+const authRouter = require('../routes/authRouter');
+// const protected = require('../auth/protected');
+
 module.exports = server => {
-    server.get('/', (req, res) => {
-        res.status(200).json({server: 'alive'})
-    })
+    server.use('/auth', authRouter);
 }
